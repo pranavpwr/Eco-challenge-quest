@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ biome.name }} - EcoQuest{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <!-- Biome Header -->
+    <div class="card mb-4 shadow">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="mb-0">
+                    <i class="fas {{ biome.icon_class }} text-success me-2"></i>
+                    {{ biome.name }}
+                </h2>
+                <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+                </a>
+            </div>
+            <p class="text-muted mt-3 mb-0">{{ biome.description }}</p>
+        </div>
+    </div>
+
+    <!-- Tasks List -->
+    <div class="row">
+        {% for task in tasks %}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm {% if task.id in completed_task_ids %}border-success{% endif %}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ task.title }}</h5>
+                    <p class="card-text">{{ task.description }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="badge bg-success">{{ task.points }} points</span>
+                        {% if task.id in completed_task_ids %}
+                        <span class="text-success">
+                            <i class="fas fa-check-circle me-1"></i>Completed
+                        </span>
+                        {% else %}
+                        <button type="button" class="btn btn-success" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#completeTask{{ task.id }}">
+                            Complete Task
+                        </button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Complete Task Modal -->
+            <div class="modal fade" id="completeTask{{ task.id }}" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form method="post" action="{% url 'complete_task' task.id %}">
+                            {% csrf_token %}
+                            <div class="modal-header">
+                                <h5 class="modal-title">Complete Task: {{ task.title }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="proof{{ task.id }}" class="form-label">
+                                        How did you complete this task?
+                                    </label>
+                                    <textarea class="form-control" id="proof{{ task.id }}" 
+                                              name="proof_description" rows="3" required></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-success">Submit Completion</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 

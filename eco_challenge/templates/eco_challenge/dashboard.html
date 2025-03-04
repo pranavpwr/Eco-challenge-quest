@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- User Progress Section -->
+    <div class="card mb-4 bg-light">
+        <div class="card-body">
+            <h2 class="card-title text-success">Your Eco Journey</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="progress mb-2">
+                        <div class="progress-bar bg-success" role="progressbar" 
+                             style="width: {{ user_progress.total_points }}%" 
+                             aria-valuenow="{{ user_progress.total_points }}" 
+                             aria-valuemin="0" aria-valuemax="100">
+                        </div>
+                    </div>
+                    <p class="text-muted">Level {{ user_progress.level }}</p>
+                    <h4>Total Points: {{ user_progress.total_points }}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Biomes Section -->
+    <h3 class="mb-4 text-success">Available Biomes</h3>
+    <div class="row">
+        {% for biome in biomes %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 {% if not biome.is_unlocked %}bg-light{% endif %}">
+                {% if biome.image %}
+                <img src="{{ biome.image.url }}" class="card-img-top" alt="{{ biome.name }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ biome.name }}</h5>
+                    <p class="card-text">{{ biome.description }}</p>
+                    {% if biome.is_unlocked %}
+                    <a href="{% url 'biome_detail' biome.id %}" class="btn btn-success">Explore Tasks</a>
+                    {% else %}
+                    <p class="text-muted">Unlock at {{ biome.required_points }} points</p>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" 
+                             style="width: {% widthratio user_progress.total_points biome.required_points 100 %}%">
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Recent Completions -->
+    <h3 class="mb-4 mt-5 text-success">Recent Achievements</h3>
+    <div class="row">
+        {% for task in completed_tasks|slice:":6" %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title">{{ task.title }}</h6>
+                    <p class="card-text text-muted">+{{ task.points }} points</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-muted">Complete tasks to see your achievements here!</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 

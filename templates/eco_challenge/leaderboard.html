@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Leaderboard - EcoQuest{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <!-- Leaderboard Header -->
+    <div class="card mb-4 shadow">
+        <div class="card-body text-center">
+            <h2 class="mb-3">
+                <i class="fas fa-trophy text-warning me-2"></i>
+                Global Leaderboard
+            </h2>
+            <p class="text-muted mb-0">
+                Your Current Rank: #{{ user_rank }}
+            </p>
+        </div>
+    </div>
+
+    <!-- Top Players -->
+    <div class="card shadow">
+        <div class="card-body">
+            {% if top_users %}
+            <div class="list-group">
+                {% for progress in top_users %}
+                <div class="list-group-item {% if progress.user == user %}bg-light{% endif %}">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <span class="me-3 h5 mb-0">
+                                {% if forloop.counter == 1 %}
+                                🥇
+                                {% elif forloop.counter == 2 %}
+                                🥈
+                                {% elif forloop.counter == 3 %}
+                                🥉
+                                {% else %}
+                                #{{ forloop.counter }}
+                                {% endif %}
+                            </span>
+                            <div>
+                                <h5 class="mb-1">{{ progress.user.username }}</h5>
+                                <p class="text-muted small mb-0">Level {{ progress.level }}</p>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <h5 class="mb-1">{{ progress.total_points }} points</h5>
+                            <p class="text-muted small mb-0">
+                                {{ progress.completed_tasks.count }} tasks completed
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="text-center text-muted my-5">
+                No players yet. Be the first to complete tasks and appear on the leaderboard!
+            </p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %} 

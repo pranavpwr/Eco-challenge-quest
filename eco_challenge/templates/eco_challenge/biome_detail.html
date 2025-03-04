@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h2 class="text-success">{{ biome.name }}</h2>
+            <p class="lead">{{ biome.description }}</p>
+        </div>
+        <div class="col-md-4 text-end">
+            <a href="{% url 'dashboard' %}" class="btn btn-outline-success">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <!-- Tasks List -->
+    <div class="row">
+        {% for task in tasks %}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <h5 class="card-title">{{ task.title }}</h5>
+                        <span class="badge bg-success">{{ task.points }} points</span>
+                    </div>
+                    <p class="card-text">{{ task.description }}</p>
+                    <div class="difficulty-badge mb-3">
+                        <span class="badge {% if task.difficulty == 'easy' %}bg-success{% elif task.difficulty == 'medium' %}bg-warning{% else %}bg-danger{% endif %}">
+                            {{ task.difficulty|title }}
+                        </span>
+                    </div>
+                    
+                    {% if task not in user_progress.completed_tasks.all %}
+                    <form method="post" action="{% url 'complete_task' task.id %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="proof_description" class="form-label">How did you complete this task?</label>
+                            <textarea class="form-control" id="proof_description" name="proof_description" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">Mark as Complete</button>
+                    </form>
+                    {% else %}
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i> Task Completed!
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col">
+            <p class="text-muted">No tasks available for this biome yet.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 

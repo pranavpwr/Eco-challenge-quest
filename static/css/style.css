@@ -1,0 +1,206 @@
+/* Custom styles for Eco-Challenge Quest */
+
+body {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    flex: 1;
+}
+
+/* Card styling */
+.card {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.card-title {
+    color: #2c3e50;
+}
+
+/* Progress bar styling */
+.progress {
+    height: 20px;
+    border-radius: 10px;
+    background-color: #e9ecef;
+}
+
+.progress-bar {
+    background-color: #28a745;
+    border-radius: 10px;
+}
+
+/* Badge styling */
+.badge {
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+/* Biome card styling */
+.biome-card {
+    height: 100%;
+}
+
+.biome-card.locked {
+    opacity: 0.7;
+}
+
+.biome-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Task completion form */
+.task-form {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Custom button styling */
+.btn {
+    border-radius: 10px;
+    padding: 8px 16px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Achievement badges */
+.achievement-badge {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    background-color: #28a745;
+    color: white;
+}
+
+/* Level indicator */
+.level-indicator {
+    font-size: 2em;
+    font-weight: bold;
+    color: #28a745;
+}
+
+/* Navbar customization */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.navbar-brand i {
+    margin-right: 8px;
+}
+
+/* Footer styling */
+.footer {
+    margin-top: auto;
+    background-color: #f8f9fa;
+    padding: 1rem 0;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+}
+
+/* Task List */
+.task-item {
+    border-left: 4px solid #28a745;
+}
+
+/* Locked Biome */
+.locked-biome {
+    opacity: 0.7;
+}
+
+/* Logout Page Styles */
+.logout-card {
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.logout-card:hover {
+    transform: translateY(-5px);
+}
+
+.logout-icon {
+    font-size: 48px;
+    color: #28a745;
+}
+
+.blockquote {
+    font-style: italic;
+}
+
+.tips-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.tips-list li:last-child {
+    border-bottom: none;
+}
+
+.alert {
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+/* Tables */
+.table th {
+    border-top: none;
+}
+
+/* Modals */
+.modal-content {
+    border-radius: 15px;
+    border: none;
+}
+
+/* Leaderboard */
+.list-group-item {
+    border-radius: 10px;
+    margin-bottom: 8px;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 1rem;
+    }
+    
+    .navbar-nav {
+        margin-top: 1rem;
+    }
+} 

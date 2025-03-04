@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile - EcoQuest{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <!-- Profile Header -->
+    <div class="card mb-4 shadow">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3 text-center">
+                    <i class="fas fa-user-circle fa-6x text-success mb-3"></i>
+                    <h3>{{ user.username }}</h3>
+                    <p class="text-muted">Member since {{ user.date_joined|date:"F j, Y" }}</p>
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card bg-success text-white">
+                                <div class="card-body text-center">
+                                    <h5>Level</h5>
+                                    <h2>{{ user_progress.level }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card bg-info text-white">
+                                <div class="card-body text-center">
+                                    <h5>Total Points</h5>
+                                    <h2>{{ user_progress.total_points }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card bg-warning text-white">
+                                <div class="card-body text-center">
+                                    <h5>Tasks Completed</h5>
+                                    <h2>{{ completed_tasks.count }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Activity History -->
+    <div class="card shadow">
+        <div class="card-header bg-white">
+            <h4 class="mb-0">Activity History</h4>
+        </div>
+        <div class="card-body">
+            {% if completed_tasks %}
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>Biome</th>
+                            <th>Points</th>
+                            <th>Completed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for completion in completed_tasks %}
+                        <tr>
+                            <td>{{ completion.task.title }}</td>
+                            <td>
+                                <i class="fas {{ completion.task.biome.icon_class }} text-success me-2"></i>
+                                {{ completion.task.biome.name }}
+                            </td>
+                            <td>
+                                <span class="badge bg-success">+{{ completion.task.points }}</span>
+                            </td>
+                            <td>{{ completion.completed_at|date:"F j, Y, g:i a" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p class="text-center text-muted my-5">
+                No tasks completed yet. Start your eco-journey by completing tasks!
+            </p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %} 
