@@ -15,7 +15,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('accounts/login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
-    path('accounts/logout/', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
+    path('accounts/logout/', views.CustomLogoutView.as_view(), name='logout'),
     path('', include('eco_challenge.urls')),
     path('biome/<int:biome_id>/', views.biome_detail, name='biome_detail'),
     path('complete-task/<int:task_id>/', views.complete_task, name='complete_task'),

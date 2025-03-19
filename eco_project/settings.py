@@ -123,3 +123,6 @@ SECURE_SSL_REDIRECT = False  # Set to True in production
 SECURE_HSTS_SECONDS = 0  # Set to at least 31536000 in production
 SECURE_HSTS_INCLUDE_SUBDOMAINS = False  # Set to True in production
 SECURE_HSTS_PRELOAD = False  # Set to True in production
+
+# Add this to your settings.py
+LOGOUT_USING_GET = True
