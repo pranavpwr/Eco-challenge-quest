@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'auth_base.html' %}
 
 {% block title %}Login - EcoQuest{% endblock %}
 
@@ -39,16 +39,12 @@
                         </div>
                         
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">Login</button>
+                            <button type="submit" class="btn btn-success btn-lg">Login</button>
                         </div>
                     </form>
                     
                     <div class="text-center mt-4">
-                        <p class="text-muted">
-                            Don't have an account? Please contact an administrator.<br>
-                            <small>If you're an admin, create an account using:<br>
-                            <code>python manage.py createsuperuser</code></small>
-                        </p>
+                        <p class="mb-0">Don't have an account? <a href="{% url 'register' %}" class="text-success">Register now</a></p>
                     </div>
                 </div>
             </div>

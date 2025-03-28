@@ -49,7 +49,7 @@
             <div class="modal fade" id="completeTask{{ task.id }}" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form method="post" action="{% url 'complete_task' task.id %}">
+                        <form method="post" action="{% url 'complete_task' task.id %}" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="modal-header">
                                 <h5 class="modal-title">Complete Task: {{ task.title }}</h5>
@@ -62,6 +62,16 @@
                                     </label>
                                     <textarea class="form-control" id="proof{{ task.id }}" 
                                               name="proof_description" rows="3" required></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="proofImage{{ task.id }}" class="form-label">
+                                        Upload photo of completed task:
+                                    </label>
+                                    <input type="file" class="form-control" id="proofImage{{ task.id }}" 
+                                           name="proof_image" accept="image/jpeg,image/png,image/gif">
+                                    <div class="form-text">
+                                        Upload a photo of completed task (max 5MB)
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">

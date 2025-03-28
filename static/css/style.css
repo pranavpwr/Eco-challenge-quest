@@ -1,206 +1,548 @@
-/* Custom styles for Eco-Challenge Quest */
+/* EcoQuest Design System - Modern Nature-Inspired UI */
 
+:root {
+  /* Primary Colors */
+  --eco-green-dark: #2E7D32;
+  --eco-green: #43A047;
+  --eco-green-light: #66BB6A;
+  --eco-blue: #1976D2;
+  --eco-blue-light: #42A5F5;
+  
+  /* Neutral Colors */
+  --eco-gray-100: #F5F7FA;
+  --eco-gray-200: #E4E7EB;
+  --eco-gray-300: #CBD2D9;
+  --eco-gray-400: #9AA5B1;
+  --eco-gray-500: #7B8794;
+  --eco-gray-600: #616E7C;
+  --eco-gray-700: #52606D;
+  --eco-gray-800: #3E4C59;
+  --eco-gray-900: #323F4B;
+  
+  /* Accent Colors */
+  --eco-yellow: #FFC107;
+  --eco-orange: #FF9800;
+  --eco-red: #F44336;
+  --eco-purple: #9C27B0;
+  
+  /* Biome-specific Colors */
+  --biome-forest: #43A047;
+  --biome-ocean: #1976D2;
+  --biome-desert: #FF9800;
+  --biome-mountain: #5D4037;
+  --biome-arctic: #42A5F5;
+  
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-xxl: 3rem;
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+  --radius-circle: 50%;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+  
+  /* Typography */
+  --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+}
+
+/* Global Styles */
 body {
-    background-color: #f8f9fa;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Poppins', sans-serif;
+  color: var(--eco-gray-900);
+  background-color: var(--eco-gray-100);
+  line-height: 1.6;
 }
 
-.container {
-    flex: 1;
+a {
+  color: var(--eco-green);
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-/* Card styling */
-.card {
-    border-radius: 15px;
-    border: none;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease;
+a:hover {
+  color: var(--eco-green-dark);
+  text-decoration: none;
 }
 
-.card:hover {
-    transform: translateY(-2px);
-}
-
-.card-title {
-    color: #2c3e50;
-}
-
-/* Progress bar styling */
-.progress {
-    height: 20px;
-    border-radius: 10px;
-    background-color: #e9ecef;
-}
-
-.progress-bar {
-    background-color: #28a745;
-    border-radius: 10px;
-}
-
-/* Badge styling */
-.badge {
-    padding: 8px 12px;
-    border-radius: 8px;
-}
-
-/* Biome card styling */
-.biome-card {
-    height: 100%;
-}
-
-.biome-card.locked {
-    opacity: 0.7;
-}
-
-.biome-card img {
-    height: 200px;
-    object-fit: cover;
-}
-
-/* Task completion form */
-.task-form {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-/* Custom button styling */
-.btn {
-    border-radius: 10px;
-    padding: 8px 16px;
-}
-
-.btn-success {
-    background-color: #28a745;
-    border: none;
-}
-
-.btn-success:hover {
-    background-color: #218838;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-/* Achievement badges */
-.achievement-badge {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px;
-    background-color: #28a745;
-    color: white;
-}
-
-/* Level indicator */
-.level-indicator {
-    font-size: 2em;
-    font-weight: bold;
-    color: #28a745;
-}
-
-/* Navbar customization */
+/* Navbar */
 .navbar {
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: white;
+  box-shadow: var(--shadow-sm);
+  padding: 0.75rem 0;
 }
 
 .navbar-brand {
-    font-weight: bold;
+  font-weight: 700;
+  color: var(--eco-green) !important;
+  font-size: 1.5rem;
 }
 
 .navbar-brand i {
-    margin-right: 8px;
+  margin-right: 0.5rem;
+  color: var(--eco-green);
 }
 
-/* Footer styling */
+.nav-link {
+  font-weight: 500;
+  padding: 0.5rem 1rem !important;
+  color: var(--eco-gray-700) !important;
+}
+
+.nav-link:hover {
+  color: var(--eco-green) !important;
+}
+
+.nav-link.active {
+  color: var(--eco-green) !important;
+  background-color: rgba(67, 160, 71, 0.1);
+  border-radius: var(--radius-md);
+}
+
+.nav-link i {
+  margin-right: 0.5rem;
+}
+
+/* Footer */
 .footer {
-    margin-top: auto;
-    background-color: #f8f9fa;
-    padding: 1rem 0;
-    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+  background-color: var(--eco-gray-900);
+  color: grey;
+  padding: 3rem 0 1.5rem;
+  margin-top: 3rem;
 }
 
-/* Task List */
-.task-item {
-    border-left: 4px solid #28a745;
+.footer a {
+  color: var(--eco-gray-400);
+  transition: color 0.3s ease;
 }
 
-/* Locked Biome */
-.locked-biome {
-    opacity: 0.7;
+.footer a:hover {
+  color: white;
 }
 
-/* Logout Page Styles */
-.logout-card {
-    border-radius: 15px;
-    transition: transform 0.3s ease;
+.footer h5, .footer h6 {
+  font-weight: 600;
 }
 
-.logout-card:hover {
-    transform: translateY(-5px);
+.footer ul li {
+  margin-bottom: 0.5rem;
 }
 
-.logout-icon {
-    font-size: 48px;
-    color: #28a745;
+/* Cards */
+.card {
+  border-radius: var(--radius-md);
+  border: none;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
 }
 
-.blockquote {
-    font-style: italic;
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
 }
 
-.tips-list li {
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
+.card-title {
+  font-weight: 600;
 }
 
-.tips-list li:last-child {
-    border-bottom: none;
+/* Biome Cards */
+.biome-card {
+  height: 100%;
+  border: none;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
-.alert {
-    border-radius: 10px;
-    border: none;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.biome-card:hover {
+  transform: translateY(-10px);
 }
 
-.alert-success {
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-    color: #155724;
+.biome-card .card-img-top {
+  height: 180px;
+  object-fit: cover;
 }
 
-/* Tables */
-.table th {
-    border-top: none;
+.biome-card .card-body {
+  padding: 1.5rem;
 }
 
-/* Modals */
-.modal-content {
-    border-radius: 15px;
-    border: none;
+.biome-card .card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.biome-card .progress {
+  height: 10px;
+  border-radius: var(--radius-sm);
+  background-color: var(--eco-gray-200);
+  margin-bottom: 0.75rem;
+}
+
+.biome-card .progress-bar {
+  border-radius: var(--radius-sm);
+}
+
+.biome-card .locked-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  z-index: 10;
+  border-radius: var(--radius-lg);
+}
+
+.biome-card .locked-overlay i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+/* Task Cards */
+.task-card {
+  border: none;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+
+.task-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.task-card .card-body {
+  padding: 1.5rem;
+}
+
+.task-card .task-points {
+  background-color: var(--eco-green);
+  color: white;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+}
+
+.task-card .task-difficulty {
+  font-size: 0.875rem;
+  color: var(--eco-gray-600);
+}
+
+.task-card .task-difficulty.easy {
+  color: var(--eco-green);
+}
+
+.task-card .task-difficulty.medium {
+  color: var(--eco-orange);
+}
+
+.task-card .task-difficulty.hard {
+  color: var(--eco-red);
+}
+
+.task-card .task-completed {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: var(--eco-green);
+  color: white;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Buttons */
+.btn {
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  padding: 0.5rem 1.25rem;
+  transition: all 0.3s ease;
+}
+
+.btn-success {
+  background-color: var(--eco-green);
+  border-color: var(--eco-green);
+}
+
+.btn-success:hover {
+  background-color: var(--eco-green-dark);
+  border-color: var(--eco-green-dark);
+}
+
+.btn-outline-success {
+  color: var(--eco-green);
+  border-color: var(--eco-green);
+}
+
+.btn-outline-success:hover {
+  background-color: var(--eco-green);
+  border-color: var(--eco-green);
+}
+
+/* Progress Bars */
+.progress {
+  height: 0.75rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--eco-gray-200);
+  margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+  background-color: var(--eco-green);
+  border-radius: var(--radius-sm);
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: var(--eco-gray-700);
+  margin-bottom: 0.5rem;
+}
+
+/* Level Badge */
+.level-badge {
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--eco-green);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25rem;
+  font-weight: 700;
 }
 
 /* Leaderboard */
-.list-group-item {
-    border-radius: 10px;
-    margin-bottom: 8px;
-    border: none;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.leaderboard-table th {
+  font-weight: 600;
+  color: var(--eco-gray-700);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .card {
-        margin-bottom: 1rem;
-    }
-    
-    .navbar-nav {
-        margin-top: 1rem;
-    }
+.leaderboard-table td {
+  vertical-align: middle;
+}
+
+.leaderboard-rank {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+}
+
+.leaderboard-rank.rank-1 {
+  background-color: var(--eco-yellow);
+  color: var(--eco-gray-900);
+}
+
+.leaderboard-rank.rank-2 {
+  background-color: var(--eco-gray-300);
+  color: var(--eco-gray-900);
+}
+
+.leaderboard-rank.rank-3 {
+  background-color: #CD7F32;
+  color: white;
+}
+
+.leaderboard-rank.other {
+  background-color: var(--eco-gray-200);
+  color: var(--eco-gray-700);
+}
+
+/* Auth pages styling */
+.auth-page {
+  background-color: var(--eco-gray-100);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-page .navbar {
+  background-color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.auth-page main {
+  flex: 1;
+}
+
+.auth-page .card {
+  border: none;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Animations */
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dashboard specific styles */
+.dashboard-stats {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  text-align: center;
+  height: 100%;
+}
+
+.stat-card.green {
+  background-color: rgba(67, 160, 71, 0.1);
+  color: var(--eco-green-dark);
+}
+
+.stat-card.blue {
+  background-color: rgba(25, 118, 210, 0.1);
+  color: var(--eco-blue);
+}
+
+.stat-card.orange {
+  background-color: rgba(255, 152, 0, 0.1);
+  color: var(--eco-orange);
+}
+
+.stat-card h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+}
+
+.stat-card p {
+  font-size: 1rem;
+  margin-bottom: 0;
+  color: var(--eco-gray-700);
+}
+
+/* Profile page */
+.profile-header {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 2rem;
+}
+
+.profile-stat-card {
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  text-align: center;
+  color: white;
+}
+
+.profile-stat-card h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.profile-stat-card h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+/* Confetti animation for level up */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--eco-green);
+  opacity: 0.8;
+  animation: confetti 5s ease-in-out forwards;
+}
+
+.confetti:nth-child(2n) {
+  background-color: var(--eco-blue);
+}
+
+.confetti:nth-child(3n) {
+  background-color: var(--eco-yellow);
+}
+
+.confetti:nth-child(4n) {
+  background-color: var(--eco-purple);
+}
+
+@keyframes confetti {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
 } 

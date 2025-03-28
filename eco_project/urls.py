@@ -16,7 +16,12 @@ urlpatterns = [
     path('', home, name='home'),
     path('accounts/login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('accounts/logout/', views.CustomLogoutView.as_view(), name='logout'),
+    path('accounts/register/', views.register, name='register'),
     path('', include('eco_challenge.urls')),
     path('biome/<int:biome_id>/', views.biome_detail, name='biome_detail'),
     path('complete-task/<int:task_id>/', views.complete_task, name='complete_task'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
+]
+
+# Add this to serve media files during development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 

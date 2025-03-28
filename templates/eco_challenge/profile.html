@@ -60,6 +60,7 @@
                             <th>Biome</th>
                             <th>Points</th>
                             <th>Completed</th>
+                            <th>Proof</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -74,6 +75,19 @@
                                 <span class="badge bg-success">+{{ completion.task.points }}</span>
                             </td>
                             <td>{{ completion.completed_at|date:"F j, Y, g:i a" }}</td>
+                            <td>
+                                {% if completion.proof_image %}
+                                <a href="{{ completion.proof_image.url }}" target="_blank" class="btn btn-sm btn-outline-success">
+                                    <i class="fas fa-image"></i> View Proof (Django)
+                                </a>
+                                {% endif %}
+                                
+                                {% if completion.mongodb_image_id %}
+                                <a href="{% url 'mongodb_image' completion.mongodb_image_id %}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-image"></i> View Proof (MongoDB)
+                                </a>
+                                {% endif %}
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>

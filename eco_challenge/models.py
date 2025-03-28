@@ -46,6 +46,7 @@ class TaskCompletion(models.Model):
     completed_at = models.DateTimeField(auto_now_add=True)
     proof_description = models.TextField(blank=True)
     proof_image = models.ImageField(upload_to='task_proofs/', null=True, blank=True)
+    mongodb_image_id = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         unique_together = ('user_progress', 'task') 

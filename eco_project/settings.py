@@ -62,6 +62,18 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    'mongodb': {
+        'ENGINE': 'djongo',
+        'NAME': 'eco_quest_db',
+        'CLIENT': {
+            'host': 'mongodb://localhost:27017',
+            # For MongoDB Atlas, use a connection string like:
+            # 'host': 'mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<dbname>?retryWrites=true&w=majority',
+            'port': 27017,
+            'username': '',  # Add your MongoDB username if needed
+            'password': '',  # Add your MongoDB password if needed
+        }
     }
 }
 
@@ -97,6 +109,15 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# Task completion proof settings
+TASK_PROOF_UPLOAD_PATH = 'task_proofs/'  # Subfolder within media directory for task proof images
+ALLOWED_PROOF_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/gif']  # Allowed image MIME types
+MAX_PROOF_IMAGE_SIZE = 5 * 1024 * 1024  # 5MB max file size for proof images
+
+# Ensure media directory exists
+os.makedirs(MEDIA_ROOT, exist_ok=True)
+os.makedirs(os.path.join(MEDIA_ROOT, TASK_PROOF_UPLOAD_PATH), exist_ok=True)
+
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -126,3 +147,6 @@ SECURE_HSTS_PRELOAD = False  # Set to True in production
 
 # Add this to your settings.py
 LOGOUT_USING_GET = True
+
+# MongoDB GridFS settings for image storage
+MONGODB_GRIDFS_COLLECTION = 'task_proof_images'
